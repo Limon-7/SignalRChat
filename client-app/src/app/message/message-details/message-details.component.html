@@ -1,0 +1,87 @@
+<div class="chat__header">
+  <h5>{{ otherUser?.firstName }} {{ otherUser?.lastName }}</h5>
+  <p>
+    {{ otherUser?.email }} <i>{{ otherUser?.lastActive | date: "short" }}</i>
+  </p>
+  <p></p>
+</div>
+<div class="card">
+  <div class="card-body">
+    <div *ngIf="(messages$ | async)?.length === 0" class="empty_message">
+      <h3>No messages yet... say hi by using the message box below</h3>
+    </div>
+    <ul class="chat">
+      <li *ngFor="let message of messages$ | async" class="chat__list">
+        <div *ngIf="message.senderId == recipientId" class="chat__list--left">
+          <span class="chat-img float-left">
+            <img
+              src="../../../assets/img_avatar.png"
+              alt="name"
+              class="rounded-circle"
+            />
+          </span>
+          <div class="chat__body--left">
+            <div class="header">
+              <strong class="primary-font"
+                >{{ message.senderLastName }}
+              </strong>
+              <small class="text-muted float-right">
+                <span class="fa fa-clock-o">{{
+                  message.messageSent | date: "short"
+                }}</span>
+              </small>
+            </div>
+            <p class="chat__body__text--left">
+              {{ message.content }}
+              <span
+                ><i
+                  (click)="deleteMessage(message.id)"
+                  class="fa fa-trash delete_message"
+                ></i>
+              </span>
+            </p>
+          </div>
+        </div>
+        <!-- to me -->
+        <div *ngIf="message.senderId != recipientId" class="chat__list--right">
+          <div class="chat__body--right">
+            <div class="header">
+              <small class="text-muted float-right">
+                <i class="fa fa-clock-o">{{
+                  message.messageSent | date: "short"
+                }}</i>
+              </small>
+            </div>
+            <p class="chat__body__text--right">
+              {{ message.content }}
+              <span
+                ><i
+                  (click)="deleteMessage(message.id)"
+                  class="fa fa-trash delete_message"
+                ></i>
+              </span>
+            </p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!-- send message form -->
+  <div class="card-footer">
+    <form [formGroup]="messageForm" (ngSubmit)="messageSend()">
+      <div class="input-group">
+        <input
+          type="text"
+          formControlName="content"
+          class="form-control input-sm"
+          placeholder="send a private message"
+        />
+        <div class="input-group-append">
+          <button class="btn btn-primary" [disabled]="!messageForm.valid">
+            Send
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

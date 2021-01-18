@@ -1,0 +1,16 @@
+:host {
+  margin: 20px;
+}
+.login {
+  padding: 30px;
+  width: 100%;
+}
+.login__form {
+  display: flex;
+}
+.card {
+  padding: 20px;
+  width: 50%;
+  margin: auto;
+  box-shadow: 5px 5px 2px gray;
+}
