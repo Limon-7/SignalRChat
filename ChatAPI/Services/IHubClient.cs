@@ -9,7 +9,6 @@ namespace ChatAPI.Services
 {
     public interface IHubClient
     {
-        Task<IEnumerable<User>> BroadcastMessage(UserForReturnDto dto);
-        Task<IEnumerable<User>> GetUser(UserForReturnDto dto);
+        Task RecieveMessageAsync(object message);
     }
 }
