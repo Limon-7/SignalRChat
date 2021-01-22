@@ -1,0 +1,38 @@
+.register__container h1 {
+  margin: auto;
+}
+.registerForm {
+  margin-top: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+}
+.mat-form-field {
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.spinner-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup__button {
+  align-self: center;
+  position: relative;
+}
+.go__login {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

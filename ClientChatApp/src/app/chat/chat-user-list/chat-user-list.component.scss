@@ -1,0 +1,25 @@
+.fixed {
+  background: #000;
+  color: #fff;
+  position: fixed;
+  top: 80px;
+  z-index: 1000;
+  width: inherit;
+  border: 1px solid red;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.status {
+  color: greenyellow !important;
+  z-index: 12000;
+  cursor: pointer;
+}
+
+.avatar-wrapper > img {
+  width: 50px;
+  height: 50px;
+}
+.mat-divider {
+  border-width: 2px;
+  border-top-color: red;
+}

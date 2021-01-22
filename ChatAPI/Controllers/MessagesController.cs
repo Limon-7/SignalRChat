@@ -77,11 +77,15 @@ namespace ChatAPI.Controllers
             if (await _repo.SaveAll())
             {
                 // todo
-                //await _hubContext.Clients.All.SendAsync("receivedMessage", messageToReturn);
-                await _hubContext.Clients.All.SendAsync("receivedMessage", messageToReturn);
+                // await _hubContext.Clients.All.SendAsync("receivedMessage", messageToReturn);
 
                 // await _hubContext.Clients.User(message.SenderId.ToString()).RecieveMessageAsync(messageToReturn);
                 // await _hubContext.Clients.User(message.RecipientId.ToString()).RecieveMessageAsync(messageToReturn);
+
+                //await _hubContext.Clients.Users(messageToReturn.SenderId.ToString(), messageToReturn.RecipientId.ToString()).SendAsync("receivedMessage", message);
+                await _hubContext.Clients.All.SendAsync("receivedMessage", messageToReturn);
+
+                // await _hubContext.Clients.Client(userId.ToString()).SendAsync("receivedMessage", messageToReturn);
                 return CreatedAtAction("GetMessage", new { userId, id = message.Id }, messageToReturn);
             }
 

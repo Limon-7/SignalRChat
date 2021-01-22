@@ -53,20 +53,23 @@ export class MessageDetailsComponent implements OnInit {
     // this.newMessage = Object.assign({}, this.messageForm.value);
     let senderId = this.id;
     this.messageService.sendMessage(senderId, this.newMessage).subscribe(res => {
-      console.log("message send succesfully");
+      this.newMessage.senderId = senderId;
+      this.signalRService.getSignleUserMessage(this.newMessage);
+      console.log("message send succesfully", this.newMessage);
       this.messageForm.reset();
     })
-    // console.log("message send:", this.newMessage)
+
   }
   deleteMessage(messageId: number) {
-    this.messageService.deleteMessage(messageId, this.id,).subscribe(() => { console.log("Message Deleted Successfully") }, err => { console.log(err) })
-    console.log(`id:${this.id} messageId:${messageId}`)
+    this.messageService.deleteMessage(messageId, this.id,).subscribe(() => {
+    },
+      err => { console.log(err) })
   }
   //get seigle user
   getSingleUser(id: number) {
     this.authService.getUserById(id).subscribe((res) => {
       this.otherUser = res;
-      console.log("User", this.otherUser)
+      // console.log("User", this.otherUser)
     }, err => { console.log(err) })
   }
 }

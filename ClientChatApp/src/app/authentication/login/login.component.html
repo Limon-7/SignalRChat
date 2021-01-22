@@ -1,0 +1,52 @@
+<div class="login__container">
+  <mat-toolbar color="primary">
+    <h1>Login Form</h1>
+  </mat-toolbar>
+  <form [formGroup]="loginForm" (ngSubmit)="logIn()" class="loginForm">
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        placeholder="Ex. pat@example.com"
+      />
+      <mat-icon matSuffix>mode_edit</mat-icon>
+
+      <mat-error
+        *ngIf="f.email.touched && f.email.errors && f.email.errors.required"
+      >
+        Email is <strong>required</strong>
+      </mat-error>
+      <mat-error
+        *ngIf="f.email.touched && f.email.errors && f.email.errors.email"
+      >
+        Enter a <strong>valid </strong>email address
+      </mat-error>
+    </mat-form-field>
+
+    <div class="loginButton">
+      <div class="loginButton__spinner" *ngIf="loading">
+        <mat-spinner diameter="24"></mat-spinner>
+      </div>
+      <button
+        [disabled]="!loginForm.valid || loading"
+        type="submit"
+        mat-raised-button
+        color="primary"
+      >
+        Login
+      </button>
+    </div>
+
+    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{ error }}</div>
+  </form>
+  <div class="go__login">
+    <h1>Don't have an account</h1>
+    <h2>
+      Go to
+      <a routerLink="/auth/registration" routerLinkActive="navActive">Signup</a>
+      page
+    </h2>
+  </div>
+</div>

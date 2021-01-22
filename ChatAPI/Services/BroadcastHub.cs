@@ -1,4 +1,5 @@
-﻿using ChatAPI.Resourses;
+﻿using ChatAPI.Models;
+using ChatAPI.Resourses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using System;
@@ -11,9 +12,13 @@ namespace ChatAPI.Services
     // [Authorize]
     public class BroadcastHub : Hub
     {
-        // public async Task GetUsers(UserForReturnDto dto)
-        // {
-        //     await Clients.All.SendAsync("getUser", dto);
-        // }
+
+        public async Task SendMessageToUser(MessageForReturnDto message)
+        {
+            var senderId = message.SenderId.ToString();
+            var recipientId = message.RecipientId.ToString();
+            await Clients.Users(senderId, recipientId).SendAsync("broadCast", message);
+        }
+
     }
 }

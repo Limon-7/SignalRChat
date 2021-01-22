@@ -1,0 +1,35 @@
+.login__container h1 {
+  margin: auto;
+}
+.loginForm {
+  margin-top: 80px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.mat-form-field {
+  margin-bottom: 20px;
+  padding: 10px;
+}
+.loginButton {
+  align-self: center;
+  position: relative;
+}
+.loginButton__spinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.go__login {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

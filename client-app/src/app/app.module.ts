@@ -16,6 +16,7 @@ import { AuthGuard } from './_guard/auth.guard';
 import { JwtInterceptor } from './_helper/jwt.interceptor';
 import { MessageService, AuthService, SignalRService } from '@app/_services';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,12 +25,13 @@ import { MessageService, AuthService, SignalRService } from '@app/_services';
     HomeComponent,
     HeaderComponent,
 
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

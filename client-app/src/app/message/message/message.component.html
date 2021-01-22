@@ -1,11 +1,20 @@
 <div class="message">
   <div class="message__left">
-    <div class="search">
-      <p>serch goes here</p>
-    </div>
-    <div class="list">
-      <app-user-list></app-user-list>
+    <div class="message__left__container">
+      <div class="message__left__serach">serach goes here</div>
+      <div class="message__left__list">
+        <app-user-list></app-user-list>
+      </div>
     </div>
   </div>
-  <div class="message__right"><router-outlet></router-outlet></div>
+  <div class="message__right">
+    <div class="message__right__container">
+      <div class="message__right__header">
+        <h1>Message Header goes here</h1>
+      </div>
+      <div class="message__right__body">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
 </div>

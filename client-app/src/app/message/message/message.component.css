@@ -1,37 +1,46 @@
 .message {
-  /* position: sticky;
-  top: 50;
-  left: 0; */
   padding: 10px;
   display: flex;
   justify-items: center;
-  /* position: relative; */
-  overflow-y: scroll;
 }
 .message__left {
-  flex: 1 1 30%;
-  height: 80vh;
-  align-self: flex-start;
-
-  overflow-y: scroll;
-  position: relative;
-}
-.search {
-  position: sticky;
-  top: 0;
-  left: 0;
-  height: 100px;
-  z-index: 1;
-  background: rgb(17, 15, 15);
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-}
-.list {
-  margin-top: 10px;
-}
-.message__right {
-  flex: 1 1 70%;
+  flex: 1 1 400px;
   display: flex;
   justify-content: center;
+}
+.message__left__container {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 100px;
+  left: 0;
+  flex-direction: column;
+}
+.message__left__list {
+  max-height: 80vh;
+  overflow-y: scroll;
+}
+.message__right {
+  flex: 1 1 500px;
+  display: flex;
+  justify-content: center;
+}
+.message__right__container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 100px;
+  left: 30%;
+  flex-direction: column;
+}
+.message__right__header {
+  position: sticky;
+  top: 50px;
+  left: 300px;
+}
+.message__right__body {
+  width: 80%;
+  max-height: 80vh;
+  overflow-y: scroll;
 }

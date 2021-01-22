@@ -1,0 +1,106 @@
+<div class="register__container">
+  <mat-toolbar color="primary">
+    <h1>Signup Form</h1>
+  </mat-toolbar>
+  <form [formGroup]="registerForm" (ngSubmit)="register()" class="registerForm">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        placeholder="Ex. pat@example.com"
+      />
+      <mat-icon matSuffix>mode_edit</mat-icon>
+
+      <mat-error
+        *ngIf="f.email.touched && f.email.errors && f.email.errors.required"
+      >
+        Email is <strong>required</strong>
+      </mat-error>
+      <mat-error
+        *ngIf="f.email.touched && f.email.errors && f.email.errors.email"
+      >
+        Enter a <strong>valid </strong>email address
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>firstName</mat-label>
+      <input
+        type="firstName"
+        matInput
+        formControlName="firstName"
+        placeholder="Ex. Mr."
+      />
+      <mat-icon matSuffix>mode_edit</mat-icon>
+
+      <mat-error
+        *ngIf="
+          f.firstName.touched &&
+          f.firstName.errors &&
+          f.firstName.errors.required
+        "
+      >
+        FirstName is <strong>required</strong>
+      </mat-error>
+      <mat-error
+        *ngIf="
+          f.firstName.touched &&
+          f.firstName.errors &&
+          f.firstName.hasError('minlength')
+        "
+      >
+        Atleast <strong>3 </strong> charecters
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input
+        type="lastName"
+        matInput
+        formControlName="lastName"
+        placeholder="Ex. Sarker"
+      />
+      <mat-icon matSuffix>mode_edit</mat-icon>
+
+      <mat-error
+        *ngIf="
+          f.lastName.touched && f.lastName.errors && f.lastName.errors.required
+        "
+      >
+        lastName is <strong>required</strong>
+      </mat-error>
+      <mat-error
+        *ngIf="
+          f.lastName.touched &&
+          f.lastName.errors &&
+          f.lastName.hasError('minlength')
+        "
+      >
+        Atleast <strong>3 </strong> charecters
+      </mat-error>
+    </mat-form-field>
+    <div class="signup__button">
+      <div class="spinner-container" *ngIf="loading">
+        <mat-spinner diameter="24"></mat-spinner>
+      </div>
+      <button
+        [disabled]="!registerForm.valid || loading"
+        type="submit"
+        mat-raised-button
+        color="primary"
+      >
+        Register
+      </button>
+    </div>
+    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{ error }}</div>
+  </form>
+  <div class="go__login">
+    <h1>Don't have an account</h1>
+    <h2>
+      Go to
+      <a routerLink="/auth/login" routerLinkActive="navActive">Login</a>
+      page
+    </h2>
+  </div>
+</div>

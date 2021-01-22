@@ -1,0 +1,15 @@
+.authLayout {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  background: rgb(94, 35, 133);
+  background-size: cover;
+  &__formBox {
+    width: 380px;
+    min-height: 480px;
+    margin: 30px auto;
+    background: #fff;
+    position: relative;
+    box-shadow: 0 1px 3px #fff;
+  }
+}

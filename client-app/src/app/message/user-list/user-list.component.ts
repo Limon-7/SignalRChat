@@ -20,10 +20,10 @@ export class UserListComponent implements OnInit {
   private getUsersData() {
     let user = JSON.parse(localStorage.getItem('user'));
     let id = user['id'];
-    console.log("user-id", id)
+    // console.log("user-id", id)
     this.users$ = this.authService.getUsers(id);
-    let data = this.users$.subscribe(res => console.log(res));
-    console.log(data)
+    //  let data = this.users$.subscribe(res => {console.log(res)});
+    // console.log(data)
   }
 
 }

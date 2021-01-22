@@ -1,10 +1,3 @@
-<div class="chat__header">
-  <h5>{{ otherUser?.firstName }} {{ otherUser?.lastName }}</h5>
-  <p>
-    {{ otherUser?.email }} <i>{{ otherUser?.lastActive | date: "short" }}</i>
-  </p>
-  <p></p>
-</div>
 <div class="card">
   <div class="card-body">
     <div *ngIf="(messages$ | async)?.length === 0" class="empty_message">

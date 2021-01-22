@@ -9,7 +9,10 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class SignalRService {
   messageReceived$ = new Subject();
   userList$ = new Subject<User>();
+  connectionId: any
   connectionEstablished$ = new BehaviorSubject<boolean>(false);
+  // private loginUser = JSON.parse(localStorage.getItem['user']);
+  // private userId = this.loginUser['id'];
   private hubConnection: HubConnection;
   constructor() {
     this.createConnection();
@@ -26,12 +29,26 @@ export class SignalRService {
   private hubConnectionStart() {
     this.hubConnection.start().then(
       () => {
+        // this.getConnectionId();
+
         console.log('Hub connection started!');
         this.connectionEstablished$.next(true);
       }
     ).catch(err => console.log(err));
   }
+  public getConnectionId = () => {
+    this.hubConnection.invoke('getconnectionid').then(
+      (data) => {
+        console.log(data);
+        this.connectionId = data;
+      }
+    );
+  }
   private registerOnServerEvents(): void {
+    // this.hubConnection.invoke('receivedMessage').then((data: any) => {
+    //   console.log("message:added:", data)
+    //   this.messageReceived$.next(data);
+    // });
     this.hubConnection.on('receivedMessage', (data: any) => {
       console.log("message:added:", data)
       this.messageReceived$.next(data);
@@ -43,5 +60,8 @@ export class SignalRService {
     this.hubConnection.on('refreshUsers', (data: any) => {
       this.userList$.next(data);
     });
+  }
+  public getSignleUserMessage(data: any) {
+    this.hubConnection.send('broadCast', data);
   }
 }
