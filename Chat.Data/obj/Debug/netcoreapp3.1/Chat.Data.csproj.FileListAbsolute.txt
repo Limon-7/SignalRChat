@@ -1,0 +1,12 @@
+F:\.net-project\ChatAPI\Chat.Data\bin\Debug\netcoreapp3.1\Chat.Data.deps.json
+F:\.net-project\ChatAPI\Chat.Data\bin\Debug\netcoreapp3.1\Chat.Data.runtimeconfig.json
+F:\.net-project\ChatAPI\Chat.Data\bin\Debug\netcoreapp3.1\Chat.Data.runtimeconfig.dev.json
+F:\.net-project\ChatAPI\Chat.Data\bin\Debug\netcoreapp3.1\Chat.Data.dll
+F:\.net-project\ChatAPI\Chat.Data\bin\Debug\netcoreapp3.1\Chat.Data.pdb
+F:\.net-project\ChatAPI\Chat.Data\obj\Debug\netcoreapp3.1\Chat.Data.csprojAssemblyReference.cache
+F:\.net-project\ChatAPI\Chat.Data\obj\Debug\netcoreapp3.1\Chat.Data.AssemblyInfoInputs.cache
+F:\.net-project\ChatAPI\Chat.Data\obj\Debug\netcoreapp3.1\Chat.Data.AssemblyInfo.cs
+F:\.net-project\ChatAPI\Chat.Data\obj\Debug\netcoreapp3.1\Chat.Data.csproj.CoreCompileInputs.cache
+F:\.net-project\ChatAPI\Chat.Data\obj\Debug\netcoreapp3.1\Chat.Data.dll
+F:\.net-project\ChatAPI\Chat.Data\obj\Debug\netcoreapp3.1\Chat.Data.pdb
+F:\.net-project\ChatAPI\Chat.Data\obj\Debug\netcoreapp3.1\Chat.Data.genruntimeconfig.cache

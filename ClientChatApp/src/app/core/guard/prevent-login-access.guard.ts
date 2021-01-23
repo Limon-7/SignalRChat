@@ -12,7 +12,7 @@ export class PreventLoginAccessGuard implements CanActivate {
       return true;
     }
 
-    this.router.navigate(['/login']);
+    this.router.navigate(['/chat']);
     return false;
   }
 

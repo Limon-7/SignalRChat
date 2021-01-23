@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.f.email.value).pipe(
     ).subscribe((success) => {
       console.log(success)
-      this.route.navigate(['/home'])
+      this.route.navigate(['/chat'])
       console.log("login successfully"); this.loading = false;
     },
       err => {

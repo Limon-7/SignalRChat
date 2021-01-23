@@ -1,0 +1,161 @@
+.chatview {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.chatview__toolbar {
+  position: sticky;
+  height: 100px;
+  height: auto;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(250, 242, 242);
+  box-shadow: 2px 2px 2px #111;
+}
+.chatview__user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.userName {
+  margin-left: 15px;
+}
+.chatview__user > img {
+  height: 50px;
+  width: 50px;
+}
+.status {
+  color: green;
+  margin-left: -20px;
+  margin-top: 20px;
+  z-index: 12000;
+  cursor: pointer;
+}
+.userHeader_menu {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1 1 auto;
+}
+/* chat view content */
+.chatview__content {
+  height: 100%;
+}
+.message__sender {
+  display: flex;
+  flex: 0 0 auto;
+  margin-bottom: 10px;
+}
+.message__receiver {
+  display: flex;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+  margin-bottom: 10px;
+}
+.delete_menu {
+  display: flex;
+  justify-content: flex-start;
+  flex: 1 1 auto;
+}
+.delete_sender {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1 1 auto;
+}
+.message-name {
+  font-size: 16px;
+  padding: 5px;
+  background: rgb(170, 88, 88);
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px 1px #868686;
+}
+
+.message-box {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  width: 100%;
+  .scroller {
+    display: flex;
+    flex: 1 1 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+.border-page {
+  border: 1px solid #cecece;
+}
+
+.bold-name {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.bold-message {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.tex-container {
+  max-height: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.msg-header {
+  padding: 5px;
+  border-radius: 4px 4px 0px 0px;
+  background-color: #242424;
+}
+.message-hover:hover {
+  background-color: #f0f0f0;
+}
+
+.old-msg {
+  font-size: 12px;
+}
+
+.send_message {
+  display: flex;
+  width: 90%;
+  margin-left: 20px;
+  .text-bar {
+    border: 1px solid #5b2a86;
+    border-radius: 4px;
+    padding: 8px;
+    width: 100%;
+    outline-width: 0;
+    &:focus {
+      outline: none;
+      border-width: 2px;
+    }
+  }
+}
+
+.profile-img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.name {
+  font-size: 21px;
+  font-weight: 600;
+}
+
+.message-container {
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 1px 1px 2px 1px #a7a7a7;
+}
+
+.message-maker {
+  display: flex;
+}
+
+.help {
+  padding: 10px;
+  border-radius: 10px;
+}

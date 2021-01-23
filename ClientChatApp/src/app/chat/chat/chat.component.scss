@@ -11,7 +11,6 @@
 .sidenav {
   width: 500px;
   background: rgb(231, 47, 47);
-  // overflow-y: scroll;
 }
 
 .sidenav .mat-toolbar {
@@ -21,28 +20,31 @@
 .chat__toolbar {
   display: flex;
   width: 100%;
-  position: fixed;
+  // position: fixed;
   left: 0;
   justify-content: space-between;
 }
 .chat {
-  position: fixed;
+  position: sticky;
   width: 80%;
+  height: 80%;
   display: grid;
   grid-template-columns: 1fr 2fr;
   padding: 30px;
   margin: 50px;
   justify-content: start;
   grid-gap: 20px;
-  grid-template-rows: 400px;
+  border-radius: 20px;
+  background: rgb(240, 235, 235);
+  box-shadow: 2px 2px 3px #fff;
 }
+
 .chat__left {
   width: 100%;
-  border: 1px solid black;
+  border-right: 1px solid rgb(114, 113, 113);
 }
 .chat__right {
   width: 100%;
   border: 1px solid black;
   position: relative;
-  overflow-y: scroll;
 }

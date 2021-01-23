@@ -1,72 +1,62 @@
 <div class="userListheader">
-  <mat-toolbar color="primary">
-    <div class="avatar-wrapper">
+  <mat-toolbar class="userListheader__toolbar">
+    <div class="userListheader__user">
       <img
         src="../../../assets/user.png"
         class="mat-avatar avatar"
         alt="{{ user.lastName }}"
       />
-      <mat-icon class="s-16 status online__status"></mat-icon>
+      <mat-icon class="status">brightness_1</mat-icon>
+
+      <h1 class="userName">{{ user.firstName }} {{ user.lastName }}</h1>
     </div>
-    <div class="userDeatails">
-      <h1>{{ user.lastName }}</h1>
+    <div class="userHeader_menu">
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Logout</button>
+        <button mat-menu-item>Item 2</button>
+      </mat-menu>
     </div>
-    <mat-divider></mat-divider>
-    <div
-      class="search-wrapper"
-      fxFlex
-      fxLayout="row"
-      fxLayoutAlign="start center"
-    >
-      <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
-        <mat-icon class="s-16 secondary-text">search</mat-icon>
-        <input type="text" placeholder="Search or start new chat" fxFlex />
-      </div>
+  </mat-toolbar>
+  <mat-toolbar class="search_toolbar">
+    <div class="search">
+      <mat-icon>search</mat-icon>
+      <input type="text" placeholder="Search or start new chat" />
     </div>
   </mat-toolbar>
 </div>
 <!-- / SIDENAV HEADER -->
 <!-- /mat content -->
 <mat-divider></mat-divider>
-<div class="chat_user_side__content">
-  <div class="chat__list">
-    <div matSubheader *ngIf="(users$ | async)?.length > 0">Chats</div>
-    <button mat-button class="contact" *ngFor="let chatUser of users$ | async">
-      <div fxLayout="row" fxLayoutAlign="start center">
-        <div
-          class="avatar-wrapper"
-          fxFlex="0 1 auto"
-          fxLayoutAlign="center center"
-        >
-          <img
-            class="avatar"
-            src="../../../assets/loginuser.jpg"
-            alt="chatUser.lastName"
-          />
-          <mat-icon class="s-16 status"></mat-icon>
-        </div>
-
-        <div fxLayout="row" fxFlex>
-          <div
-            class="pr-4"
-            fxFlex
-            fxLayout="column"
-            fxLayoutAlign="center start"
+<div class="chat__user__container">
+  <div class="chat_user_side__content">
+    <div class="chat__list">
+      <div matSubheader *ngIf="(users$ | async)?.length > 0">Chats</div>
+      <div class="chat__list__navitem">
+        <div *ngFor="let link of users$ | async" class="chat__list__user">
+          <button
+            mat-button
+            class="chat__list__nav"
+            [routerLink]="['/chat/t', link.id]"
+            routerLinkActive="mat-accent"
           >
-            <div class="contact-name">
-              {{ chatUser.lastName }}
+            <div class="chat__list__header">
+              <img
+                src="../../../assets/user.png"
+                class="user_avater avatar"
+                alt="{{ user.lastName }}"
+              />
+              <mat-icon class="status">brightness_1</mat-icon>
+              <h3>{{ link.lastName }}</h3>
             </div>
-            <!-- <div class="contact-last-message">
-                    {{ chat.lastMessage }}
-                </div> -->
-          </div>
-
-          <div fxLayout="column" fxLayoutAlign="start end">
-            <div class="contact-last-message-time">10.12.2021</div>
-            <div class="mt-4 unread-message-count accent">unread</div>
-          </div>
+            <div class="lastMessage">
+              <p>last message goes to heres sssff</p>
+            </div>
+          </button>
         </div>
       </div>
-    </button>
+    </div>
   </div>
 </div>

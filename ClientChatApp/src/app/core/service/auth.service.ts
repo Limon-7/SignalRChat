@@ -32,7 +32,7 @@ export class AuthService {
           return response;
         }
         else {
-          this.route.navigate(['/login']);
+          this.route.navigate(['/auth/login']);
         }
       })
     );
@@ -46,7 +46,7 @@ export class AuthService {
     localStorage.removeItem('user');
     this.decodedToken = null;
     this.currentUser = null;
-    this.route.navigate(['/login']);
+    this.route.navigate(['/auth/login']);
   }
   loggedIn(): any {
     const token = localStorage.getItem('token');

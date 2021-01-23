@@ -1,4 +1,5 @@
-﻿using ChatAPI.Services;
+﻿
+using Chat.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -17,11 +18,12 @@ namespace ChatAPI.Healper
 
             var userId = int.Parse(resultContext.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
-			var repo = resultContext.HttpContext.RequestServices.GetService<IAuthRepository>();
+			var repo = resultContext.HttpContext.RequestServices.GetService<IAuthService>();
+			var unitOfWork = resultContext.HttpContext.RequestServices.GetService<IUnitOfWork>();
 
 			var user = await repo.GetUserById(userId);
 			user.LastActive = DateTime.Now;
-			//await repo.SaveAll();
+			 unitOfWork.Complete();
 		}
 	}
 

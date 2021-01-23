@@ -8,7 +8,7 @@ import { ChatSidenavComponent } from './chat-sidenav/chat-sidenav.component';
 import { ChatUserListComponent } from './chat-user-list/chat-user-list.component';
 import { ChatViewComponent } from './chat-view/chat-view.component';
 import { ChatStartComponent } from './chat-start/chat-start.component';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     ChatRoutingModule,
     SharedModule,
-    FormsModule
+    ReactiveFormsModule
 
   ]
 })

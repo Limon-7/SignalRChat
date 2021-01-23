@@ -1,1 +1,103 @@
-<p>chat-view works!</p>
+<div class="chatview">
+  <!-- chat view Header -->
+  <div class="chatview__header">
+    <mat-toolbar class="chatview__toolbar">
+      <div class="chatview__user">
+        <img
+          src="../../../assets/user.png"
+          class="mat-avatar avatar"
+          alt="user.lastName"
+        />
+        <mat-icon class="status">brightness_1</mat-icon>
+
+        <h1 class="userName">
+          {{ otherUser?.firstName }} {{ otherUser?.lastName }}
+        </h1>
+      </div>
+      <div class="userHeader_menu">
+        <button mat-button [matMenuTriggerFor]="menuChatView">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menuChatView="matMenu">
+          <button mat-menu-item (click)="deleteConversation()">
+            Delete Conversation
+          </button>
+          <button mat-menu-item (click)="authService.logout()">LogOut</button>
+        </mat-menu>
+      </div>
+      <mat-divider></mat-divider>
+    </mat-toolbar>
+  </div>
+  <div class="chatview__content">
+    <div class="" style="padding-bottom: 5px">
+      <div #textContainer class="tex-container">
+        <div class="full-height">
+          <ng-container *ngFor="let message of messages$ | async">
+            <div
+              class="message__sender"
+              *ngIf="message.senderId == recipientId"
+            >
+              <div class="message-container gray-background">
+                <img
+                  src="../../../assets/user.png"
+                  class="mat-avatar avatar"
+                  alt="user.lastName"
+                  style="width: 30px; height: 30px"
+                />
+                <span>{{ message.content }}</span>
+                <p>{{ message.messageSent | date: "short" }}</p>
+              </div>
+              <div class="delete_menu">
+                <button mat-button [matMenuTriggerFor]="menuChatDelete">
+                  <mat-icon>delete_forever</mat-icon>
+                </button>
+                <mat-menu #menuChatDelete="matMenu">
+                  <button mat-menu-item (click)="deleteMessage(message.id)">
+                    Delete Only Me
+                  </button>
+                  <button mat-menu-item (click)="deletMessageBoth(message.id)">
+                    For Every One
+                  </button>
+                </mat-menu>
+              </div>
+            </div>
+            <div
+              class="message__receiver"
+              fxflex="0 0 auto"
+              *ngIf="message.senderId != recipientId"
+            >
+              <div class="delete_sender">
+                <button mat-button [matMenuTriggerFor]="menuChatDelete">
+                  <mat-icon>delete_forever</mat-icon>
+                </button>
+                <mat-menu #menuChatDelete="matMenu">
+                  <button mat-menu-item (click)="deleteMessage(message.id)">
+                    Delete Only Me
+                  </button>
+                  <button mat-menu-item (click)="deletMessageBoth(message.id)">
+                    For Every One
+                  </button>
+                </mat-menu>
+              </div>
+              <div class="message-container accent-background color-white">
+                <span>{{ message.content }}</span>
+                <p>{{ message.messageSent }}</p>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <!-- sending form -->
+    <form
+      [formGroup]="messageForm"
+      (ngSubmit)="sendMessage()"
+      class="send_message"
+    >
+      <input class="text-bar" formControlName="content" />
+      <button color="accent" [disabled]="!messageForm.valid">
+        <mat-icon>send</mat-icon>
+      </button>
+    </form>
+  </div>
+</div>

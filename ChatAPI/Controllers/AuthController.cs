@@ -7,9 +7,11 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using ChatAPI.Models;
-using ChatAPI.Resourses;
-using ChatAPI.Services;
+using Chat.Core;
+using Chat.Core.Interfaces;
+using Chat.Core.Resourses;
+using Chat.Data.Entities;
+using ChatAPI.Hubs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,17 +25,17 @@ namespace ChatAPI.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IAuthRepository _authRepository;
-        private readonly IMapper _mapper;
+        private readonly IAuthService _authRepository;
         private readonly IHubContext<BroadcastHub> _hubContext;
-        private readonly IConfiguration _config;
-        public AuthController(IAuthRepository authRepository, IConfiguration config, IMapper mapper, IHubContext<BroadcastHub> hubContext)
+		private readonly IUnitOfWork _unitOfWork;
+		private readonly IConfiguration _config;
+        public AuthController(IAuthService authRepository, IConfiguration config, IHubContext<BroadcastHub> hubContext,IUnitOfWork unitOfWork)
         {
             _authRepository = authRepository;
             _config = config;
-            _mapper = mapper;
             _hubContext = hubContext;
-        }
+			_unitOfWork = unitOfWork;
+		}
         [Authorize]
         [Produces("application/json")]
         [HttpGet("all/{id}")]
@@ -42,33 +44,40 @@ namespace ChatAPI.Controllers
             var users = await _authRepository.GetAllUser(id);
             return users;
         }
+
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById(int id)
         {
             var user = await _authRepository.GetUserById(id);
-            var userFromDto = _mapper.Map<UserForReturnDto>(user);
+            var userFromDto = Mapping.Mapper.Map<UserForReturnDto>(user);
             return Ok(userFromDto);
+        }
+
+        [HttpPost("isUserExists")]
+        public async Task<IActionResult> IsUserAlreadyExists([FromBody] string email)
+        {
+
+           var user = await _authRepository.Login(email.ToLower()); ;
+           return Ok(user.Email);
         }
 
         [HttpPost("register")]
         public async Task<ActionResult> Register([FromBody] RegistrationDto dto)
         {
-            var email = dto.Email.ToLower();
-            var userToCreate = _mapper.Map<User>(dto);
+            var userToCreate =Mapping.Mapper.Map<User>(dto);
             var createUser = await _authRepository.Register(userToCreate);
+            _unitOfWork.Complete();
             await _hubContext.Clients.All.SendAsync("refreshUsers", createUser);
             return Ok(createUser);
-            //var userToReturn = _mapper.Map<UserForDetailsDto>(createUser);
-            //return CreatedAtRoute("GetUser", new { Controller = "User", id = createUser.Id }, userToReturn);
         }
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto dto)
         {
-
             var userFromRepo = await _authRepository.Login(dto.Email.ToLower());
             if (userFromRepo == null)
             {
-                return Unauthorized();
+                return Unauthorized("In valid credential");
             }
             var claims = new[]{
                 new Claim(ClaimTypes.NameIdentifier,userFromRepo.Id.ToString()),
