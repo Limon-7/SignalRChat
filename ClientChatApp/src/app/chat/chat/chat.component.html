@@ -1,6 +1,7 @@
 <div class="chat__container">
   <mat-sidenav-container
     class="sidenav-container mat-app-background custom-sidenav-container"
+    style="overflow: none !important"
   >
     <mat-sidenav
       #drawer
@@ -8,29 +9,16 @@
       [opened]="isOpened"
       matIsLockedOpen="gt-md"
     >
-      <mat-toolbar>Menu</mat-toolbar>
+      <mat-toolbar *ngIf="isHandset$ | async">
+        <button mat-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </mat-toolbar>
       <mat-nav-list>
-        <a mat-list-item routerLink="/chat/user/1">chat home</a>
-        <a mat-list-item href="#">Search</a>
-        <a mat-list-item routerLink="/home">Home</a>
-        <a mat-list-item href="#">Search</a>
-        <a mat-list-item routerLink="/home">Home</a>
-        <a mat-list-item href="#">Search</a>
-        <a mat-list-item routerLink="/home">Home</a>
-        <a mat-list-item href="#">Search</a>
-        <a mat-list-item routerLink="/home">Home</a>
-        <a mat-list-item href="#">Search</a>
-        <a mat-list-item routerLink="/home">Home</a>
-        <a mat-list-item href="#">Search</a>
-        <a mat-list-item routerLink="/home">Home</a>
-        <a mat-list-item href="#">Search</a>
-        <a mat-list-item routerLink="/home">Home</a>
-        <a mat-list-item href="#">Search</a>
-        <a mat-list-item routerLink="/home">Home</a>
-        <a mat-list-item href="#">Search</a>
+        <app-chat-user-list></app-chat-user-list>
       </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content style="overflow: none !important">
       <mat-toolbar color="primary" class="chat__toolbar">
         <button
           type="button"
@@ -41,12 +29,12 @@
         >
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
-        <span>Market</span>
+        <span>Chat App</span>
         <span style="flex: auto"></span>
       </mat-toolbar>
       <div class="chat_bg"></div>
       <div class="chat">
-        <div class="chat__left">
+        <div class="chat__left" *ngIf="!(isHandset$ | async)">
           <app-chat-user-list></app-chat-user-list>
         </div>
         <div class="chat__right">

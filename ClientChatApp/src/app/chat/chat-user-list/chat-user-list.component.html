@@ -12,11 +12,10 @@
     </div>
     <div class="userHeader_menu">
       <button mat-button [matMenuTriggerFor]="menu">
-        <mat-icon>menu</mat-icon>
+        <mat-icon>more_vert </mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>Logout</button>
-        <button mat-menu-item>Item 2</button>
+        <button mat-menu-item (click)="authService.logout()">Logout</button>
       </mat-menu>
     </div>
   </mat-toolbar>
@@ -51,9 +50,9 @@
               <mat-icon class="status">brightness_1</mat-icon>
               <h3>{{ link.lastName }}</h3>
             </div>
-            <div class="lastMessage">
+            <!-- <div class="lastMessage">
               <p>last message goes to heres sssff</p>
-            </div>
+            </div> -->
           </button>
         </div>
       </div>

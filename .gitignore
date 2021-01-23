@@ -1,4 +1,8 @@
 .vs
 .vscode
-ChatApi/bin
-ChatApi/obj
+server/ChatApi/bin
+server/ChatApi/obj
+server/Chat.Core/bin
+server/Chat.Core/obj
+server/Chat.Data/bin
+server/Chat.Data/obj

@@ -9,11 +9,9 @@ export class PreventLoginAccessGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) { }
   canActivate(): boolean {
     if (this.authService.loggedIn()) {
-      return true;
+      return false;
     }
-
-    this.router.navigate(['/chat']);
-    return false;
+    return true;
   }
 
 }

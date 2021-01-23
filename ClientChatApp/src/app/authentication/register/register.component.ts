@@ -41,9 +41,7 @@ export class RegisterComponent implements OnInit {
       this.loading = false;
     }, () => {
       this.authService.login(this.user.email).subscribe((res) => {
-        // this.route.navigate(['/message'])
-        // console.log("registration successful")
-        this.route.navigate(['/home'])
+        this.route.navigate(['/chat'])
       }, err => {
         this.error = err;
         this.loading = false;

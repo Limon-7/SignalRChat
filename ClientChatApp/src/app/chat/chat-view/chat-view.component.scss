@@ -1,5 +1,4 @@
 .chatview {
-  position: absolute;
   width: 100%;
   height: 100%;
 }
@@ -41,8 +40,14 @@
 /* chat view content */
 .chatview__content {
   height: 100%;
+  width: 100%;
+  position: relative;
 }
 .message__sender {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
   display: flex;
   flex: 0 0 auto;
   margin-bottom: 10px;

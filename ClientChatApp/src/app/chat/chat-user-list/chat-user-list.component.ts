@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { UserDataService } from '@app/core/data-service/user-data.service';
 import { User } from '@app/core/model/user';
+import { AuthService } from '@app/core/service/auth.service';
 import { SignalRService } from '@app/core/service/signalR.service';
 import { Observable } from 'rxjs';
 
@@ -12,7 +14,8 @@ import { Observable } from 'rxjs';
 export class ChatUserListComponent implements OnInit {
   users$: Observable<User[]>;
   user = JSON.parse(localStorage.getItem("user"));
-  constructor(private userService: UserDataService, private signlRService: SignalRService) { }
+  // @Input() sidenav: MatSidenav;
+  constructor(private userService: UserDataService, private signlRService: SignalRService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.signlRService.userList$.subscribe(() => this.getUsersData());

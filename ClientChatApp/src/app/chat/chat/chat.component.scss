@@ -1,16 +1,18 @@
 .custom-sidenav-container {
-  position: inherit;
+  // position: inherit;
   height: 100%;
   display: inherit;
   transform: inherit;
 }
 .sidenav-container {
-  height: 70%;
+  height: 100%;
 }
-
+.mat-drawer-content {
+  overflow: none !important;
+}
 .sidenav {
   width: 500px;
-  background: rgb(231, 47, 47);
+  background: #fff;
 }
 
 .sidenav .mat-toolbar {
@@ -20,18 +22,17 @@
 .chat__toolbar {
   display: flex;
   width: 100%;
-  // position: fixed;
   left: 0;
   justify-content: space-between;
 }
 .chat {
-  position: sticky;
-  width: 80%;
-  height: 80%;
+  position: static;
+  width: 90%;
+  height: 500px;
   display: grid;
   grid-template-columns: 1fr 2fr;
   padding: 30px;
-  margin: 50px;
+  margin: 10px 20px 20px 10px;
   justify-content: start;
   grid-gap: 20px;
   border-radius: 20px;
@@ -42,9 +43,17 @@
 .chat__left {
   width: 100%;
   border-right: 1px solid rgb(114, 113, 113);
+  position: relative;
+  overflow-y: auto;
 }
 .chat__right {
   width: 100%;
-  border: 1px solid black;
+  border-right: 1px solid rgb(114, 113, 113);
   position: relative;
+}
+@media only screen and (max-width: 960px) {
+  /* Here are some changes*/
+  .chat {
+    grid-template-columns: 1fr;
+  }
 }
