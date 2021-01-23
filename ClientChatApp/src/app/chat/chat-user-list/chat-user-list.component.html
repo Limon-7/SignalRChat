@@ -8,7 +8,7 @@
       />
       <mat-icon class="status">brightness_1</mat-icon>
 
-      <h1 class="userName">{{ user.firstName }} {{ user.lastName }}</h1>
+      <h1 class="userName">{{ user?.firstName }} {{ user?.lastName }}</h1>
     </div>
     <div class="userHeader_menu">
       <button mat-button [matMenuTriggerFor]="menu">

@@ -78,3 +78,4 @@ Front-end is a single page application based on angular 10. This only communicat
 ![Chat Logout](/images/logout.png)
 ![Chat Login](/images/signup1.png)
 ![Chat Signup](/images/signup2.png)
+![Swagger](/images/swagger.png)

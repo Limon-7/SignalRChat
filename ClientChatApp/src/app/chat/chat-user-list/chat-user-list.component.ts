@@ -15,7 +15,7 @@ export class ChatUserListComponent implements OnInit {
   users$: Observable<User[]>;
   user = JSON.parse(localStorage.getItem("user"));
   // @Input() sidenav: MatSidenav;
-  constructor(private userService: UserDataService, private signlRService: SignalRService, private authService: AuthService) { }
+  constructor(private userService: UserDataService, private signlRService: SignalRService, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.signlRService.userList$.subscribe(() => this.getUsersData());
