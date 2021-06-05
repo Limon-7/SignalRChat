@@ -75,7 +75,9 @@ namespace ChatAPI.Controllers
             var messageToReturn = Mapping.Mapper.Map<MessageForCreationDto>(message);
             if (_unitOfWork.Complete() > 0)
             {
-                await _hubContext.Clients.All.SendAsync("receivedMessage", messageToReturn);
+                // for all client
+                // await _hubContext.Clients.All.SendAsync("receivedMessage", messageToReturn);
+
                 return CreatedAtAction("GetMessage", new { userId, id = message.Id }, messageToReturn);
             }
 

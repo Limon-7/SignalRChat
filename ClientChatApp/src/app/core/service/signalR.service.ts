@@ -64,4 +64,8 @@ export class SignalRService {
   public getSignleUserMessage(data: any) {
     this.hubConnection.send('broadCast', data);
   }
+  // send message to caller
+  public sendMessageToCaller(model) {
+    this.hubConnection.invoke('SendMessageToCaller', model)
+  }
 }

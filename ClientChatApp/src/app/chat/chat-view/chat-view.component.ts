@@ -58,11 +58,13 @@ export class ChatViewComponent implements OnInit, AfterViewChecked {
   sendMessage() {
     this.newMessage.recipientId = this.recipientId;
     this.newMessage.content = this.messageForm.get('content').value
-    // this.newMessage = Object.assign({}, this.messageForm.value);
     let senderId = this.id;
+    //this.newMessage = Object.assign({}, this.messageForm.value);
     this.messageService.sendMessage(senderId, this.newMessage).subscribe(res => {
       this.newMessage.senderId = senderId;
-      this.signalRService.getSignleUserMessage(this.newMessage);
+      //this.signalRService.getSignleUserMessage(this.newMessage);
+      // send message to caller
+      this.signalRService.sendMessageToCaller(this.newMessage)
       console.log("message send succesfully", this.newMessage);
       this.messageForm.reset();
     })
